@@ -30,17 +30,12 @@
     </style>
   </head>
   <body>
-    <!--
     <div style="display: none">
       <audio controls autoplay>
         <source src="love.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
     </div>
-  -->
-    <audio autoplay="autoplay" loop="loop" id="bg-music">
-      <source src="love.mp3" type="audio/mpeg" />
-    </audio>
     <div id="main">
       <div id="wrap">
         <div id="text">
@@ -70,58 +65,7 @@
         <canvas id="canvas" width="1100" height="680"></canvas>
       </div>
     </div>
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script>
-      function autoPlayMusic() {
-        // 自动播放音乐效果，解决浏览器或者APP自动播放问题
-        function musicInBrowserHandler() {
-          musicPlay(true);
-          document.body.removeEventListener(
-            "touchstart",
-            musicInBrowserHandler
-          );
-        }
-        document.body.addEventListener("touchstart", musicInBrowserHandler);
-
-        // 自动播放音乐效果，解决微信自动播放问题
-        function musicInWeixinHandler() {
-          musicPlay(true);
-          document.addEventListener(
-            "WeixinJSBridgeReady",
-            function () {
-              musicPlay(true);
-            },
-            false
-          );
-          document.removeEventListener(
-            "DOMContentLoaded",
-            musicInWeixinHandler
-          );
-        }
-        document.addEventListener("DOMContentLoaded", musicInWeixinHandler);
-      }
-      function musicPlay(isPlay) {
-        var audio = document.getElementById("bg-music");
-        if (isPlay && audio.paused) {
-          audio.play();
-        }
-        if (!isPlay && !audio.paused) {
-          audio.pause();
-        }
-      }
-      autoPlayMusic();
-
-      // 关闭音乐
-      $(".music-pic").click(function () {
-        if ($(".music-pic").hasClass("close")) {
-          document.getElementById("bg-music").muted = false;
-          $(".music-pic").removeClass("close");
-        } else {
-          $(".music-pic").addClass("close");
-          document.getElementById("bg-music").muted = true;
-        }
-      });
-
       (function () {
         var canvas = $("#canvas");
 
